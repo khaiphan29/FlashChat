@@ -20,6 +20,9 @@ class RegisterViewController: UIViewController {
         if let email = emailTextfield.text, let password = passwordTextfield.text {
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                 if let e = error {
+                    let alert = UIAlertController (title: "Register Error", message: e.localizedDescription, preferredStyle: .actionSheet)
+                    self.present(alert, animated: true, completion: nil)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel))
                     print (e.localizedDescription)
                 }
                 else {
