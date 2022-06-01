@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseCore
 
 class WelcomeViewController: UIViewController {
 
@@ -14,8 +15,18 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
+        FirebaseApp.configure()
+        
+        let title = titleLabel.text
+        titleLabel.text = ""
+        var charTime = 0.0
+        for letter in title! {
+            //print(charTime)
+            Timer.scheduledTimer(withTimeInterval: 0.1 * charTime, repeats: false) { timer in
+                self.titleLabel.text?.append(letter)
+            }
+            charTime += 1
+        }
     }
     
 
